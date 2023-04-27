@@ -23,6 +23,7 @@ Commands
 docker run -d -p 9090:9090 -v /home/vagrant/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 prometheus.yml
+
 global:
   scrape_interval:     15s
   evaluation_interval: 15s
