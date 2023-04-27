@@ -1,0 +1,36 @@
+Case Study
+
+Your manager has called you for a meeting because he has created a ticket in Jira Kanban that he would like you to work on. 
+The ticket involves provisioning a robust and scalable Jenkins infrastructure using Terraform Cloud, Bash script, and Docker container, 
+as well as creating a monitoring solution with Prometheus container for scraping data and Grafana for visualizing the data.
+
+To complete this task, you will need to perform the following steps:
+
+Define the infrastructure requirements: Before provisioning the Jenkins infrastructure,
+you need to define the infrastructure requirements, such as the number of build nodes, the required resources for each node,
+and any other dependencies. You must gather this information from the development team and production team.
+
+Provision the Jenkins infrastructure: Once you have defined the infrastructure requirements, you can use Terraform Cloud to provision the infrastructure automatically. 
+You must create Terraform configuration files that define the infrastructure components, such as the EC2 instances for the build nodes, 
+the security groups, the load balancer, and the other required resources.
+
+Configure the Jenkins server: Once the infrastructure is provisioned, you will need to configure the Jenkins server with the required installations using a Bash script. 
+You must create a Bash script that installs Git, Ansible, Docker, Docker-compose, Terraform, Wget, Curl, patch-management, cleaning the cache, 
+and removing outdated packages.
+
+Configure the Jenkins pipeline: Once the infrastructure is provisioned, you will need to configure the Jenkins pipeline to build, test, and deploy the application automatically. 
+You will need to create a Declarative Jenkins script that defines the pipeline stages, such as building the application, running the tests, 
+and deploying the application to the staging area of the production environment.
+
+Implement monitoring solution: To monitor the Jenkins infrastructure and pipeline, you must implement a monitoring solution using Prometheus and Grafana.
+Creating a Prometheus container that scrapes the Jenkins metrics and stores them in a time-series database would be best. 
+You must also create a Grafana container that visualizes the metrics using dashboards and alerts and configure its data source as Prometheus.
+
+Test and optimize the infrastructure: Once the infrastructure and pipeline are provisioned and configured, you must thoroughly test them to ensure they work as expected.
+You will also need to optimize the infrastructure for performance, scalability, and cost by fine-tuning the parameters, 
+such as the build timeouts, resource allocation, and testing suites.
+
+In conclusion, provisioning a robust and scalable Jenkins infrastructure using Terraform Cloud, Bash script, and Docker container and creating a monitoring solution with Prometheus container and Grafana for visualizing the data requires a combination of infrastructure, 
+scripting, containerization, and monitoring skills. Completing this task will showcase your ability to work with these technologies and deliver a 
+reliable and efficient Jenkins pipeline for the development team 
+and the organization.
