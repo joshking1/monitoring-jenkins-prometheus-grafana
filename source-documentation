@@ -50,7 +50,11 @@ scrape_configs:
     metrics_path: /prometheus/
     static_configs:
     - targets: ['192.168.32.13:8080']
-sample Jenkinsfile
+    
+    
+    
+# sample Jenkinsfile
+
 pipeline {
   agent any
   triggers { 
