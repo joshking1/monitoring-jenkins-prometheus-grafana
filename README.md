@@ -1,7 +1,6 @@
 
 # Monitoring Jenkins infrastructure using Prometheus-Grafana is very important for a DevOps engineer. Here are some reasons why:
 
-: set num 
 
 Early detection of issues: By monitoring the Jenkins infrastructure, DevOps engineers can detect any issues or anomalies early on. This can help them resolve the issues before they become more serious and cause major disruptions to the development process.
 
