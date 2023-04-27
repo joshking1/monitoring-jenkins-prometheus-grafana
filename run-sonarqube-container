@@ -1,0 +1,9 @@
+
+docker run -d --name sonarqube -p 9000:9000 -p 9092:9092  sonarqube 
+
+# Sonarqube Scanner 
+
+This command runs a Docker container with the name "sonarqube" and exposes the ports 9000 and 9092. 
+The container runs the "sonarqube" image, which is a tool for continuous code quality inspection. 
+The port 9000 is used for accessing the SonarQube web interface, and the port 9092 is used for communication between SonarQube and other tools in the CI/CD pipeline. 
+The "-d" flag specifies that the container should be run in detached mode, meaning it runs in the background.
