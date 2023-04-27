@@ -5,3 +5,63 @@ https://plugins.jenkins.io/prometheus/
 https://plugins.jenkins.io/cloudbees-disk-usage-simple/
 
 https://grafana.com/grafana/dashboards
+
+# Mounting a Volume 
+
+Mounting a volume in Docker is important because it allows you to persist data and share files between the Docker container and the host system. 
+In the context of the command you provided, the -v /home/vagrant/prometheus.yml:/etc/prometheus/prometheus.yml option specifies that the prometheus.yml file 
+located on the host system at /home/vagrant/prometheus.yml should be mounted as a volume inside the Docker container at the path /etc/prometheus/prometheus.yml. 
+This means that any changes made to the file from within the container will be reflected on the host system, and vice versa.
+In this specific case, the prometheus.yml file contains configuration information for Prometheus, a popular open-source monitoring and alerting system. 
+By mounting the file as a volume, you can easily modify the configuration outside of the container and have those changes reflected in the running instance of Prometheus without having to rebuild the container image.
+The -p option maps the container's port 9090 to the host system's port 9090, allowing you to access the Prometheus web interface from your host system's browser.
+Overall, mounting volumes in Docker allows for data persistence, easy file sharing, and configuration management.
+
+
+Commands
+
+docker run -d -p 9090:9090 -v /home/vagrant/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+
+prometheus.yml
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  scrape_timeout:      10s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['localhost:9090']
+  - job_name: 'jenkins'
+    metrics_path: /prometheus/
+    static_configs:
+    - targets: ['192.168.32.13:8080']
+sample Jenkinsfile
+pipeline {
+  agent any
+  triggers { 
+    cron('* * * * *')
+  }
+  stages {
+    stage('Hello') {
+      steps {
+        echo 'Hello World - team-a - test'
+        sleep 3
+      }
+    }
+  }
+}
