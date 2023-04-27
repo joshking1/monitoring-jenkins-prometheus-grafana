@@ -1,1 +1,31 @@
+# Run jenkins Server as a container 
 
+
+docker run \
+  -u root \
+  --rm \
+  -d \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  --name jenkins \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v $(which docker):/usr/bin/docker \
+  -v /home/jenkins_home:/var/jenkins_home \
+  jenkins/jenkins
+  
+  
+# Notes 
+  
+Running Jenkins as a Docker container instead of a warfile has several advantages:
+
+Portability: Jenkins running in a Docker container is highly portable and can be easily moved between environments, such as development, testing, and production.
+
+Isolation: Running Jenkins in a container provides an additional layer of isolation and security, as the container has its own filesystem, network, and process space.
+
+Scalability: Docker allows you to easily scale Jenkins horizontally, by creating multiple containers running Jenkins and distributing the workload among them.
+
+Easy maintenance: Docker simplifies the process of maintaining Jenkins, as you can easily update, roll back or roll forward to a previous version of Jenkins, by just starting a new container.
+
+Flexibility: Docker makes it easy to integrate Jenkins with other tools and services by allowing you to mount volumes and share resources between containers, as demonstrated in the command you provided.
+For example, by mounting the docker socket and binary, Jenkins can interact with the Docker engine running on the host, allowing it to build and deploy Docker images.
+  
