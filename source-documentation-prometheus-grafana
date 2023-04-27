@@ -52,6 +52,14 @@ scrape_configs:
     - targets: ['192.168.32.13:8080']
     
     
+# Command to run grafana visualization tool 
+
+docker run -d --name grafana  -p 3000:3000 grafana/grafana 
+
+visit the grafana dashboard 
+
+https://grafana.com/grafana/dashboards/?search=jenkins
+    
     
 # sample Jenkinsfile
 
