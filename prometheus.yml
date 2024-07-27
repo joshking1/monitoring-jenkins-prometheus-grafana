@@ -20,8 +20,8 @@ rule_files:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-    - targets: ['localhost:9090']
+    - targets: ['3.83.226.105:9090']
   - job_name: 'jenkins'
     metrics_path: /prometheus/
     static_configs:
-    - targets: ['192.168.32.13:8080']
+    - targets: ['3.83.226.105:8080']
