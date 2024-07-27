@@ -1,5 +1,7 @@
 Documentation and plugins required 
 
+# Do not forget to install prometheus plugin in jenkins 
+
 https://plugins.jenkins.io/prometheus/
 
 https://plugins.jenkins.io/cloudbees-disk-usage-simple/
