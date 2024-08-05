@@ -1,0 +1,35 @@
+docker run \
+  --privileged \
+  -u root \
+  --rm \
+  -d \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  --name jenkins \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /usr/bin/docker:/usr/bin/docker \
+  -v /home/jenkins_home:/var/jenkins_home \
+  jenkins/jenkins
+
+# Verify Docker Binary Path:
+Ensure the Docker binary is correctly mounted. 
+Sometimes, the which docker command might not work correctly in all environments. Try specifying the full path directly if the dynamic path doesn't work.
+If you are running Docker-in-Docker, ensure the container has the necessary privileges.
+
+-v /usr/bin/docker:/usr/bin/docker
+
+# Running Docker-in-Docker (DinD):
+
+ If you are running Docker-in-Docker, ensure the container has the necessary privileges. 
+
+--privileged
+
+# Adjust Permissions on Docker Socket:
+Sometimes, adjusting the permissions on the Docker socket can help. Be cautious with this approach, as it might expose your Docker daemon to security risks.
+
+sudo chmod 666 /var/run/docker.sock
+
+# Review Docker Logs:
+Check the logs of the Jenkins container for any specific error messages that might indicate what is going wrong.
+
+docker logs jenkins
