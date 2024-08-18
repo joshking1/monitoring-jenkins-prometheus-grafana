@@ -1,0 +1,66 @@
+1. SQL Injections
+
+What It Is: SQL injection is a security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. 
+It typically happens when untrusted data is inserted directly into a SQL query.
+
+Example: Consider the following PHP code snippet:
+
+$username = $_GET['username'];
+$query = "SELECT * FROM users WHERE username = '$username'";
+$result = mysqli_query($conn, $query);
+Vulnerability: If an attacker sets $_GET['username'] to '; DROP TABLE users; --, the query becomes:
+
+SELECT * FROM users WHERE username = ''; DROP TABLE users; --'
+This could lead to the deletion of the entire users table.
+
+Safe Code Example: Using prepared statements can prevent this vulnerability:
+
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+
+2. Cross-Site Scripting (XSS)
+
+What It Is: XSS is a security vulnerability that allows an attacker to inject malicious scripts into content that is then delivered to users.
+These scripts can steal user data, perform actions on behalf of the user, or deface a website.
+
+Example: Consider the following JavaScript code:
+
+let username = getUserInput(); // Suppose this gets data from user input
+document.write("Hello, " + username + "!");
+Vulnerability: If an attacker enters <script>alert('Hacked!')</script>, the script will be executed, leading to an XSS attack.
+
+Safe Code Example: Always escape user inputs when rendering them to HTML:
+
+let username = getUserInput();
+let safeUsername = encodeHTML(username);
+document.write("Hello, " + safeUsername + "!");
+
+function encodeHTML(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+3. Insecure Cryptography
+
+What It Is: Insecure cryptography involves the use of outdated or weak encryption algorithms that can easily be broken by attackers. 
+Examples include using MD5 or SHA-1 for hashing passwords.
+
+Example: Consider the following Java code:
+
+MessageDigest md = MessageDigest.getInstance("MD5");
+byte[] hash = md.digest("password123".getBytes());
+Vulnerability: MD5 is considered weak and susceptible to collisions, meaning two different inputs could produce the same hash value.
+
+Safe Code Example: Use stronger algorithms like SHA-256 or better yet, use dedicated password hashing algorithms like bcrypt:
+
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+byte[] hash = md.digest("password123".getBytes());
+Or for password hashing:
+
+String hashedPassword = BCrypt.hashpw("password123", BCrypt.gensalt());
+
+Summary
+SonarQube helps catch these and other security issues by analyzing your code for common vulnerabilities:
+SQL Injection: Ensures that SQL queries are not vulnerable to manipulation.
+Cross-Site Scripting (XSS): Ensures that user input is properly escaped before being rendered.
+Insecure Cryptography: Flags the use of weak or outdated cryptographic algorithms.
+By using tools like SonarQube, you can automatically detect and address these vulnerabilities before they make it into production, helping to secure your applications against potential attacks.
